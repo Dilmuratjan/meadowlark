@@ -3,10 +3,17 @@ const app = express();
 const handlebars = require('express3-handlebars').create({ defaultLayout:'main' });
 
 const port = 3000
+const fortunes = [
+	"Conquer your fears or they will conqur you.",
+	"Rivers need springs.",
+	"Do not fear what you don't know.",
+	"You will have a pleasant surprise.",
+	"Whenever possible, keep it simple."
+];
 
 app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
 
+app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -17,16 +24,14 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/about',(req,res)=>{
-	res.render('about');
+	res.render('about', {fortune: fortunes[Math.floor(Math.random()*fortunes.length)]});
 });
 
-// 404
 app.use((req, res)=>{
 	res.status(404);
 	res.render('404');
 });
 
-//500
 app.use((err, req, res, next)=>{
 	console.error(err.stack);
 	res.type('text/plain');
