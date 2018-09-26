@@ -1,4 +1,2 @@
 #ignore packges installed by npm
 node_modules
-package-lock.json
-
