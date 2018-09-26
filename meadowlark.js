@@ -1,6 +1,8 @@
-let express = require('express');
-let app = express();
-let handlebars = require('express3-handlebars').create({ defaultLayout:'main' });
+const express = require('express');
+const app = express();
+const handlebars = require('express3-handlebars').create({ defaultLayout:'main' });
+
+const port = 3000
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -8,7 +10,7 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || port);
 
 app.get('/',(req,res)=>{
 	res.render('home');
