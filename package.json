@@ -25,11 +25,12 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "grunt": "^1.0.3",
     "grunt-cafe-mocha": "^0.1.13",
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-exec": "^3.0.0",
+    "grunt-mocha": "^1.1.0",
     "mocha": "^5.2.0",
     "zombie": "^6.1.3"
   }

@@ -5,8 +5,8 @@ module.exports = (grunt) => {
     [
         'grunt-cafe-mocha',
         'grunt-contrib-jshint',
-        'grunt-exec',
-    ].forEach(function(task) {
+        'grunt-exec'
+    ].map((task)=>{
         grunt.loadNpmTasks(task);
     });
 
@@ -14,7 +14,7 @@ module.exports = (grunt) => {
     grunt.initConfig({
         cafemocha: {
             all: {
-                src: 'qa/test-*js',
+                src: 'qa/tests-*js',
                 options: {
                     ui: 'tdd'
                 },

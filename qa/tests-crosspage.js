@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 
+// import Browser from 'zombie';
+
 const Browser = require('zombie');
 const assert = require('chai').assert;
 
@@ -21,15 +23,15 @@ suite('Cross-Page Tests', () => {
         });
     });
 
-    test('requseting a group rate from the oregon coast tour page' + 'should populate the referrer field', (done) => {
-        let referrer = 'http://localhost:3000/tours/oregon-coast';
-        browser.visit(referrer, () => {
-            browser.clickLink('.requestGroupRate', () => {
-                assert(browser.field('referrer').value === referrer);
-                done();
-            });
-        });
-    });
+    // test('requseting a group rate from the oregon coast tour page' + 'should populate the referrer field', (done) => {
+    //     let referrer = 'http://localhost:3000/tours/oregon-coast';
+    //     browser.visit(referrer, () => {
+    //         browser.clickLink('.requestGroupRate', () => {
+    //             assert(browser.field('referrer').value === referrer);
+    //             done();
+    //         });
+    //     });
+    // });
 
     test('visiting the "request group rate" page dirctly should result' + 'in an empty referrer field', (done) => {
         let referrer = 'http://localhost:3000/tours/request-group-rate';

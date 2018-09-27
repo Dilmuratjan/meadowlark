@@ -8,3 +8,12 @@ suite('Fortune cookie tests', () => {
         expect(typeof fortune.getFortune() === 'string');
     });
 });
+
+
+// import { DataHandler } from './lib/DataHandler';
+
+// suite('Fortune cookie tests', () => {
+//     test('getFortune() should return a fortune', () => {
+//         assert(typeof(DataHandler.getFortune()) === 'string');
+//     });
+// });

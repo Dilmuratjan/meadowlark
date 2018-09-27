@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 import express from 'express';
-import handlebars from 'express3-handlebars'
+import handlebars from 'express3-handlebars';
 
 import { DataHandler } from './lib/DataHandler';
 
