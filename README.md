@@ -7,4 +7,4 @@
 - v1.4 node modules
 - v2.0 page tests
 - v2.1 cross page tests
-
+- v2.2 logic tests
