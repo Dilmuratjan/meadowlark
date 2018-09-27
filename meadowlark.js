@@ -15,12 +15,12 @@ app.use(express.static(__dirname + '/public'));
 
 app.set('port', process.env.PORT || port);
 
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
     next();
 });
 
-app.get('/', (req, res)=>res.render('home'));
+app.get('/', (req, res) => res.render('home'));
 
 app.get('/about', (req, res) => {
     res.render('about', {
