@@ -14,7 +14,16 @@ const port = 3000;
 app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', handlebars({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        section: (name, options) =>{
+            if(!this._sections)
+                this._sections = {};
+            this._sections[name] = options.fn(this);
+            console.log(this._sections)
+            return null;
+        }
+    }
 }));
 
 app.set('view engine', 'handlebars');
