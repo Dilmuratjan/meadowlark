@@ -14,31 +14,22 @@ app.engine('handlebars', handlebars({
 }));
 
 app.set('view engine', 'handlebars');
-
-app.use(express.static(__dirname + '/public'));
-
 app.set('port', process.env.PORT || port);
 
+app.use(express.static(__dirname + '/public'));
 app.use((req, res, next) => {
     res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
     next();
 });
-
-router(app);
-
-app.post('/process-contact', (req, res) => {
-    console.log('Received contact from [' + req.body.name + '<' + req.body.email + '>' + '] ');
-    res.redirect(303, '/thank you.');
-});
-
 app.use((req, res, next)=>{
     if(!res.locals.partials) res.locals.partials = {};
     res.locals.partials.weather = DataHandler.getWeatherData();
     next();
 });
 
-app.use((req, res) => res.status(404).render('404'));
+router(app);
 
+app.use((req, res) => res.status(404).render('404'));
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.type('text/plain').status(500).render('500');
