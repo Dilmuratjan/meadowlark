@@ -8,7 +8,6 @@ import { DataHandler } from './lib/DataHandler';
 const app = express();
 const port = 3000;
 
-
 app.engine('handlebars', handlebars({
     defaultLayout: 'main'
 }));
@@ -53,7 +52,10 @@ app.get('/greeting', (req, res) => {
 
 app.get('/api/products', (req, res) => {
     let toursXml = '<?xml version="1.0"?><tours>' +
-        Data.products.map((p) => '<tour price="' + p.price + '" id="' + p.id + '">' + p.name + '</tour>').join('') + '</tours>';
+        Data.products.map((p) => '<tour price="' +
+            p.price + '" id="' +
+            p.id + '">' +
+            p.name + '</tour>').join('') + '</tours>';
 
     res.format({
         'application/json': () => res.json(tours),
@@ -67,6 +69,12 @@ app.post('/process-contact', (req, res) => {
     console.log('Received contact from [' + req.body.name + '<' + req.body.email + '>' + '] ');
     res.redirect(303, '/thank you.');
 });
+
+app.use((req, res, next)=>{
+    if(!res.locals.partials) res.locals.partials = {};
+    res.locals.partials.weather = DataHandler.getWeatherData();
+    next();
+})
 
 app.use((req, res) => res.status(404).render('404'));
 

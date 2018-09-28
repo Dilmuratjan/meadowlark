@@ -10,3 +10,4 @@ from book [*web development with node and express*](https://www.amazon.com/Web-D
 > - v2.2    logic testing
 > - v2.3    linting
 > - v2.4    automating with grunt
+> - v3.0    partials
