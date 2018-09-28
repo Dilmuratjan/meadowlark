@@ -6,7 +6,7 @@ module.exports = (grunt) => {
         'grunt-cafe-mocha',
         'grunt-contrib-jshint',
         'grunt-exec'
-    ].map((task)=>{
+    ].map((task) => {
         grunt.loadNpmTasks(task);
     });
 
@@ -21,7 +21,12 @@ module.exports = (grunt) => {
             }
         },
         jshint: {
-            app: ['meadowlark.js', 'public/js/**/*.js', 'lib/**/*.js', 'routers/**/*.js'],
+            app: ['meadowlark.js',
+                'public/js/**/*.js',
+                'lib/**/*.js',
+                'routers/**/*.js',
+                'middlewares/**/*.js'
+            ],
             qa: ['Gruntfile.js', 'public/qa/**/*.js', 'qa/**/*.js'],
         },
         exec: {

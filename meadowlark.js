@@ -5,9 +5,13 @@ import handlebars from 'express3-handlebars';
 
 import { DataHandler } from './lib/DataHandler';
 import { router } from './routers/router';
+import { middleware } from './middlewares/middleware';
+import { errorHandler } from './middlewares/errorHandler';
+
 
 const app = express();
 const port = 3000;
+app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', handlebars({
     defaultLayout: 'main'
@@ -16,23 +20,11 @@ app.engine('handlebars', handlebars({
 app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || port);
 
-app.use(express.static(__dirname + '/public'));
-app.use((req, res, next) => {
-    res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
-    next();
-});
-app.use((req, res, next)=>{
-    if(!res.locals.partials) res.locals.partials = {};
-    res.locals.partials.weather = DataHandler.getWeatherData();
-    next();
-});
+
+middleware(app);
 
 router(app);
 
-app.use((req, res) => res.status(404).render('404'));
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.type('text/plain').status(500).render('500');
-});
+errorHandler(app);
 
-app.listen(app.get('port'), () => console.log('Express started on http://localhost:' + app.get('port') + '; press Control-C to terminate.'));
+app.listen(app.get('port'), () => console.log('Express started on http://localhost:' + app.get('port') + '...'));
